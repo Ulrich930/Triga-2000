@@ -1,0 +1,971 @@
+          Thread Name & Version = MCNP5_RSICC, 1.20
+                                _                                      
+          ._ _    _  ._   ._   |_                                      
+          | | |  (_  | |  |_)   _)                                     
+                          |                                            
+ +--------------------------------------------------------------------+
+ |   This program was prepared by the Regents of the University of    |
+ |California at Los Alamos National Laboratory (the University) under |
+ |  contract number W-7405-ENG-36 with the U.S. Department of Energy  |
+ |(DoE).  The University has certain rights in the program pursuant to|
+ |  the contract and the program should not be copied or distributed  |
+ | outside your organization.  All rights in the program are reserved |
+ |by the DoE and the University.  Neither the U.S. Government nor the |
+ | University makes any warranty, express or implied, or assumes any  |
+ |     liability or responsibility for the use of this software.      |
+ +--------------------------------------------------------------------+
+  
+1mcnp     version 5     ld=11042003                     05/18/25 14:30:35 
+ *************************************************************************                 probid =  05/18/25 14:30:35 
+ i=tr2.txt o=rtr2.out                                                            
+
+    1-       TRIGA 2000 Core - VisEd-Compatible Full 5x5 Explicit Core                       
+    2-       C ------------------------------------------------------------                  
+    3-       C Author: Ulrich Nzau Lumendo | Date: 2025-03-31                                
+    4-       C ------------------------------------------------------------                  
+    5-       c                                                                               
+    6-       C ================= CELL CARDS (5x5 Grid) ====================                  
+    7-       C Layer 1 (Bottom)                                                              
+    8-       1   3  -1.0     -101   imp:n=1   $ Inlet Plenum (L1C1)                          
+    9-       2   1  -2.96    -102   imp:n=1   $ Fuel (L1C2)                                  
+   10-       3   1  -2.96    -103   imp:n=1   $ Fuel (L1C3)                                  
+   11-       4   1  -2.96    -104   imp:n=1   $ Fuel (L1C4)                                  
+   12-       5   3  -1.0     -105   imp:n=1   $ Inlet Plenum (L1C5)                          
+   13-       c                                                                               
+   14-       C Layer 2                                                                       
+   15-       6   1  -2.96    -106   imp:n=1   $ Fuel (L2C1)                                  
+   16-       7   3  -1     -107   imp:n=1   $ Control Rod (L2C2)                             
+   17-       8   1  -2.96    -108   imp:n=1   $ Fuel (L2C3)                                  
+   18-       9   3  -1     -109   imp:n=1   $ Control Rod (L2C4)                             
+   19-       10  1  -2.96    -110   imp:n=1   $ Fuel (L2C5)                                  
+   20-       c                                                                               
+   21-       C Layer 3 (Central)                                                             
+   22-       11  1  -2.96    -111   imp:n=1   $ Fuel (L3C1)                                  
+   23-       12  1  -2.96    -112   imp:n=1   $ Fuel (L3C2)                                  
+   24-       13  3  -1.0     -113   imp:n=1   $ Central Inlet Plenum (L3C3)                  
+   25-       14  1  -2.96    -114   imp:n=1   $ Fuel (L3C4)                                  
+   26-       15  1  -2.96    -115   imp:n=1   $ Fuel (L3C5)                                  
+   27-       c                                                                               
+   28-       C Layer 4                                                                       
+   29-       16  1  -2.96    -116   imp:n=1   $ Fuel (L4C1)                                  
+   30-       17  3  -1     -117   imp:n=1   $ Control Rod (L4C2)                             
+   31-       18  1  -2.96    -118   imp:n=1   $ Fuel (L4C3)                                  
+   32-       19  3  -1     -119   imp:n=1   $ Control Rod (L4C4)                             
+   33-       20  1  -2.96    -120   imp:n=1   $ Fuel (L4C5)                                  
+   34-       c                                                                               
+   35-       C Layer 5 (Top)                                                                 
+   36-       21  3  -1.0     -121   imp:n=1   $ Inlet Plenum (L5C1)                          
+   37-       22  1  -2.96    -122   imp:n=1   $ Fuel (L5C2)                                  
+   38-       23  1  -2.96    -123   imp:n=1   $ Fuel (L5C3)                                  
+   39-       24  1  -2.96    -124   imp:n=1   $ Fuel (L5C4)                                  
+   40-       25  3  -1.0     -125   imp:n=1   $ Inlet Plenum (L5C5)                          
+   41-       c                                                                               
+   42-       C Graphite Reflector (Commented)                                                
+   43-       26 2  -1.85 126 -1000 -1001 1002  imp:n=1                                       
+   44-       c                                                                               
+   45-       C Universe Boundary                                                             
+   46-       99  3  -1  -1003 -1004 1005  &                                                  
+   47-           #1 #2 #3 #4 #5 #6 #7 #8 #9 #10 &                                            
+   48-           #11 #12 #13 #14 #15 #16 #17 #18 #19 #20 &                                   
+   49-           #21 #22 #23 #24 #25 #26              imp:n=1                                
+   50-       100  0   1003:1004:-1005         imp:n=0   $ External Void                      
+   51-                                                                                       
+   52-       C ================ SURFACE DEFINITIONS ========================                 
+   53-       C Layer 1 Surfaces (Z: 0-60 cm)                                                 
+   54-       101 RPP -21.28 -13.57  -22.25 -14.15  -30 30   $ L1C1                           
+   55-       102 RPP -12.57  -4.86  -22.25 -14.15  -30 30   $ L1C2                           
+   56-       103 RPP  -3.86   3.85  -22.25 -14.15  -30 30   $ L1C3                           
+   57-       104 RPP   4.86  12.57  -22.25 -14.15  -30 30   $ L1C4                           
+   58-       105 RPP  13.57  21.28  -22.25 -14.15  -30 30   $ L1C5                           
+   59-       c                                                                               
+   60-       C Layer 2 Surfaces (Z: 0-60 cm)                                                 
+   61-       106 RPP -21.28 -13.57  -13.15  -5.05  -30 30   $ L2C1                           
+   62-       107 RPP -12.57  -4.86  -13.15  -5.05  -30 30   $ L2C2                           
+   63-       108 RPP  -3.86   3.85  -13.15  -5.05  -30 30   $ L2C3                           
+   64-       109 RPP   4.86  12.57  -13.15  -5.05  -30 30   $ L2C4                           
+   65-       110 RPP  13.57  21.28  -13.15  -5.05  -30 30   $ L2C5                           
+   66-       c                                                                               
+   67-       C Layer 3 Surfaces (Z: 0-60 cm)                                                 
+   68-       111 RPP -21.28 -13.57   -4.05   4.05  -30 30   $ L3C1                           
+   69-       112 RPP -12.57  -4.86   -4.05   4.05  -30 30   $ L3C2                           
+   70-       113 RPP  -3.86   3.85   -4.05   4.05  -30 30   $ L3C3                           
+   71-       114 RPP   4.86  12.57   -4.05   4.05  -30 30   $ L3C4                           
+   72-       115 RPP  13.57  21.28   -4.05   4.05  -30 30   $ L3C5                           
+   73-       c                                                                               
+   74-       C Layer 4 Surfaces (Z: 0-60 cm)                                                 
+   75-       116 RPP -21.28 -13.57    5.05  13.15  -30 30   $ L4C1                           
+   76-       117 RPP -12.57  -4.86    5.05  13.15  -30 30   $ L4C2                           
+   77-       118 RPP  -3.86   3.85    5.05  13.15  -30 30   $ L4C3                           
+   78-       119 RPP   4.86  12.57    5.05  13.15  -30 30   $ L4C4                           
+   79-       120 RPP  13.57  21.28    5.05  13.15  -30 30   $ L4C5                           
+   80-       c                                                                               
+   81-       C Layer 5 Surfaces (Z: 0-60 cm)                                                 
+   82-       121 RPP -21.28 -13.57   14.15  22.25  -30 30   $ L5C1                           
+   83-       122 RPP -12.57  -4.86   14.15  22.25  -30 30   $ L5C2                           
+   84-       123 RPP  -3.86   3.85   14.15  22.25  -30 30   $ L5C3                           
+   85-       124 RPP   4.86  12.57   14.15  22.25  -30 30   $ L5C4                           
+   86-       125 RPP  13.57  21.28   14.15  22.25  -30 30   $ L5C5                           
+   87-       c                                                                               
+   88-       130 RPP -21.28 21.28  -22.25 -14.15  -30 30                                     
+   89-       131 RPP -21.28 21.28  -13.15 -5.05   -30 30                                     
+   90-       132 RPP -21.28 21.28  -4.05 4.05  -30 30                                        
+   91-       133 RPP -21.28 21.28  5.05 13.15  -30 30                                        
+   92-       134 RPP -21.28 21.28  13.15 22.25  -30 30                                       
+   93-       c                                                                               
+   94-       126 RPP -22 22 -23 23 -25 25                                                    
+   95-       c                                                                               
+   96-       C Core Geometry                                                                 
+   97-       1000 CZ 54.29    $ Radial Boundary (R = 54.29 cm)                               
+   98-       1001 PZ 25       $ Upper Z Boundary (+75 cm)                                    
+   99-       1002 PZ -25      $ Lower Z Boundary (-15 cm)                                    
+  100-       c                                                                               
+  101-       C global Geometry                                                               
+  102-       1003 CZ 65    $ Radial Boundary (R = 54.29 cm)                                  
+  103-       1004 PZ 45       $ Upper Z Boundary (+75 cm)                                    
+  104-       1005 PZ -45      $ Lower Z Boundary (-15 cm)                                    
+  105-                                                                                       
+  106-       C ================ MATERIAL DEFINITIONS =======================                 
+  107-       m1 92235.66c 0.0395 &                                                           
+  108-          92238.66c 0.1605 &                                                           
+  109-          13027.66c 0.50   &                                                           
+  110-          6000.66c 0.30                                                                
+  111-       m3 1001.62c 0.666   &                                                           
+  112-          8016.62c 0.334                                                               
+  113-       m4 47107.66c 0.90   &                                                           
+ warning. material   4 is not used in the problem.
+  114-          48112.66c 0.10                                                               
+ fatal error.  too many numbers in first entry.
+ fatal error.  too many numbers in first entry.
+ fatal error.  too many numbers in first entry.
+ fatal error.  there is no f card corresponding to this card.
+  115-       m2 6000.66c 1.0                                                                 
+  116-       C ================ PHYSICS & SOURCE ===========================                 
+  117-       mode n                                                                          
+  118-       kcode 5000 1.0 50 150    $ Criticality: 5000 cycles, 50 skipped                 
+  119-       ksrc 0 0 0               $ Point source at origin                               
+
+ surface    101.1 and surface    106.1 are the same.    106.1 will be deleted.
+
+ surface    101.1 and surface    111.1 are the same.    111.1 will be deleted.
+
+ surface    101.1 and surface    116.1 are the same.    116.1 will be deleted.
+
+ surface    101.1 and surface    121.1 are the same.    121.1 will be deleted.
+
+ surface    101.2 and surface    106.2 are the same.    106.2 will be deleted.
+
+ surface    101.2 and surface    111.2 are the same.    111.2 will be deleted.
+
+ surface    101.2 and surface    116.2 are the same.    116.2 will be deleted.
+
+ surface    101.2 and surface    121.2 are the same.    121.2 will be deleted.
+
+ surface    101.2 and surface    130.2 are the same.    130.2 will be deleted.
+
+ surface    101.2 and surface    131.2 are the same.    131.2 will be deleted.
+
+ surface    101.2 and surface    132.2 are the same.    132.2 will be deleted.
+
+ surface    101.2 and surface    133.2 are the same.    133.2 will be deleted.
+
+ surface    101.2 and surface    134.2 are the same.    134.2 will be deleted.
+
+ surface    101.3 and surface    102.3 are the same.    102.3 will be deleted.
+
+ surface    101.3 and surface    103.3 are the same.    103.3 will be deleted.
+
+ surface    101.3 and surface    104.3 are the same.    104.3 will be deleted.
+
+ surface    101.3 and surface    105.3 are the same.    105.3 will be deleted.
+
+ surface    101.3 and surface    130.3 are the same.    130.3 will be deleted.
+
+ surface    101.4 and surface    102.4 are the same.    102.4 will be deleted.
+
+ surface    101.4 and surface    103.4 are the same.    103.4 will be deleted.
+
+ surface    101.4 and surface    104.4 are the same.    104.4 will be deleted.
+
+ surface    101.4 and surface    105.4 are the same.    105.4 will be deleted.
+
+ surface    101.4 and surface    130.4 are the same.    130.4 will be deleted.
+
+ surface    101.5 and surface    102.5 are the same.    102.5 will be deleted.
+
+ surface    101.5 and surface    103.5 are the same.    103.5 will be deleted.
+
+ surface    101.5 and surface    104.5 are the same.    104.5 will be deleted.
+
+ surface    101.5 and surface    105.5 are the same.    105.5 will be deleted.
+
+ surface    101.5 and surface    106.5 are the same.    106.5 will be deleted.
+
+ surface    101.5 and surface    107.5 are the same.    107.5 will be deleted.
+
+ surface    101.5 and surface    108.5 are the same.    108.5 will be deleted.
+
+ surface    101.5 and surface    109.5 are the same.    109.5 will be deleted.
+
+ surface    101.5 and surface    110.5 are the same.    110.5 will be deleted.
+
+ surface    101.5 and surface    111.5 are the same.    111.5 will be deleted.
+
+ surface    101.5 and surface    112.5 are the same.    112.5 will be deleted.
+
+ surface    101.5 and surface    113.5 are the same.    113.5 will be deleted.
+
+ surface    101.5 and surface    114.5 are the same.    114.5 will be deleted.
+
+ surface    101.5 and surface    115.5 are the same.    115.5 will be deleted.
+
+ surface    101.5 and surface    116.5 are the same.    116.5 will be deleted.
+
+ surface    101.5 and surface    117.5 are the same.    117.5 will be deleted.
+
+ surface    101.5 and surface    118.5 are the same.    118.5 will be deleted.
+
+ surface    101.5 and surface    119.5 are the same.    119.5 will be deleted.
+
+ surface    101.5 and surface    120.5 are the same.    120.5 will be deleted.
+
+ surface    101.5 and surface    121.5 are the same.    121.5 will be deleted.
+
+ surface    101.5 and surface    122.5 are the same.    122.5 will be deleted.
+
+ surface    101.5 and surface    123.5 are the same.    123.5 will be deleted.
+
+ surface    101.5 and surface    124.5 are the same.    124.5 will be deleted.
+
+ surface    101.5 and surface    125.5 are the same.    125.5 will be deleted.
+
+ surface    101.5 and surface    130.5 are the same.    130.5 will be deleted.
+
+ surface    101.5 and surface    131.5 are the same.    131.5 will be deleted.
+
+ surface    101.5 and surface    132.5 are the same.    132.5 will be deleted.
+
+ surface    101.5 and surface    133.5 are the same.    133.5 will be deleted.
+
+ surface    101.5 and surface    134.5 are the same.    134.5 will be deleted.
+
+ surface    101.6 and surface    102.6 are the same.    102.6 will be deleted.
+
+ surface    101.6 and surface    103.6 are the same.    103.6 will be deleted.
+
+ surface    101.6 and surface    104.6 are the same.    104.6 will be deleted.
+
+ surface    101.6 and surface    105.6 are the same.    105.6 will be deleted.
+
+ surface    101.6 and surface    106.6 are the same.    106.6 will be deleted.
+
+ surface    101.6 and surface    107.6 are the same.    107.6 will be deleted.
+
+ surface    101.6 and surface    108.6 are the same.    108.6 will be deleted.
+
+ surface    101.6 and surface    109.6 are the same.    109.6 will be deleted.
+
+ surface    101.6 and surface    110.6 are the same.    110.6 will be deleted.
+
+ surface    101.6 and surface    111.6 are the same.    111.6 will be deleted.
+
+ surface    101.6 and surface    112.6 are the same.    112.6 will be deleted.
+
+ surface    101.6 and surface    113.6 are the same.    113.6 will be deleted.
+
+ surface    101.6 and surface    114.6 are the same.    114.6 will be deleted.
+
+ surface    101.6 and surface    115.6 are the same.    115.6 will be deleted.
+
+ surface    101.6 and surface    116.6 are the same.    116.6 will be deleted.
+
+ surface    101.6 and surface    117.6 are the same.    117.6 will be deleted.
+
+ surface    101.6 and surface    118.6 are the same.    118.6 will be deleted.
+
+ surface    101.6 and surface    119.6 are the same.    119.6 will be deleted.
+
+ surface    101.6 and surface    120.6 are the same.    120.6 will be deleted.
+
+ surface    101.6 and surface    121.6 are the same.    121.6 will be deleted.
+
+ surface    101.6 and surface    122.6 are the same.    122.6 will be deleted.
+
+ surface    101.6 and surface    123.6 are the same.    123.6 will be deleted.
+
+ surface    101.6 and surface    124.6 are the same.    124.6 will be deleted.
+
+ surface    101.6 and surface    125.6 are the same.    125.6 will be deleted.
+
+ surface    101.6 and surface    130.6 are the same.    130.6 will be deleted.
+
+ surface    101.6 and surface    131.6 are the same.    131.6 will be deleted.
+
+ surface    101.6 and surface    132.6 are the same.    132.6 will be deleted.
+
+ surface    101.6 and surface    133.6 are the same.    133.6 will be deleted.
+
+ surface    101.6 and surface    134.6 are the same.    134.6 will be deleted.
+
+ surface    102.1 and surface    107.1 are the same.    107.1 will be deleted.
+
+ surface    102.1 and surface    112.1 are the same.    112.1 will be deleted.
+
+ surface    102.1 and surface    117.1 are the same.    117.1 will be deleted.
+
+ surface    102.1 and surface    122.1 are the same.    122.1 will be deleted.
+
+ surface    102.2 and surface    107.2 are the same.    107.2 will be deleted.
+
+ surface    102.2 and surface    112.2 are the same.    112.2 will be deleted.
+
+ surface    102.2 and surface    117.2 are the same.    117.2 will be deleted.
+
+ surface    102.2 and surface    122.2 are the same.    122.2 will be deleted.
+
+ surface    103.1 and surface    108.1 are the same.    108.1 will be deleted.
+
+ surface    103.1 and surface    113.1 are the same.    113.1 will be deleted.
+
+ surface    103.1 and surface    118.1 are the same.    118.1 will be deleted.
+
+ surface    103.1 and surface    123.1 are the same.    123.1 will be deleted.
+
+ surface    103.2 and surface    108.2 are the same.    108.2 will be deleted.
+
+ surface    103.2 and surface    113.2 are the same.    113.2 will be deleted.
+
+ surface    103.2 and surface    118.2 are the same.    118.2 will be deleted.
+
+ surface    103.2 and surface    123.2 are the same.    123.2 will be deleted.
+
+ surface    104.1 and surface    109.1 are the same.    109.1 will be deleted.
+
+ surface    104.1 and surface    114.1 are the same.    114.1 will be deleted.
+
+ surface    104.1 and surface    119.1 are the same.    119.1 will be deleted.
+
+ surface    104.1 and surface    124.1 are the same.    124.1 will be deleted.
+
+ surface    104.2 and surface    109.2 are the same.    109.2 will be deleted.
+
+ surface    104.2 and surface    114.2 are the same.    114.2 will be deleted.
+
+ surface    104.2 and surface    119.2 are the same.    119.2 will be deleted.
+
+ surface    104.2 and surface    124.2 are the same.    124.2 will be deleted.
+
+ surface    105.1 and surface    110.1 are the same.    110.1 will be deleted.
+
+ surface    105.1 and surface    115.1 are the same.    115.1 will be deleted.
+
+ surface    105.1 and surface    120.1 are the same.    120.1 will be deleted.
+
+ surface    105.1 and surface    125.1 are the same.    125.1 will be deleted.
+
+ surface    105.1 and surface    130.1 are the same.    130.1 will be deleted.
+
+ surface    105.1 and surface    131.1 are the same.    131.1 will be deleted.
+
+ surface    105.1 and surface    132.1 are the same.    132.1 will be deleted.
+
+ surface    105.1 and surface    133.1 are the same.    133.1 will be deleted.
+
+ surface    105.1 and surface    134.1 are the same.    134.1 will be deleted.
+
+ surface    105.2 and surface    110.2 are the same.    110.2 will be deleted.
+
+ surface    105.2 and surface    115.2 are the same.    115.2 will be deleted.
+
+ surface    105.2 and surface    120.2 are the same.    120.2 will be deleted.
+
+ surface    105.2 and surface    125.2 are the same.    125.2 will be deleted.
+
+ surface    106.3 and surface    107.3 are the same.    107.3 will be deleted.
+
+ surface    106.3 and surface    108.3 are the same.    108.3 will be deleted.
+
+ surface    106.3 and surface    109.3 are the same.    109.3 will be deleted.
+
+ surface    106.3 and surface    110.3 are the same.    110.3 will be deleted.
+
+ surface    106.3 and surface    131.3 are the same.    131.3 will be deleted.
+
+ surface    106.4 and surface    107.4 are the same.    107.4 will be deleted.
+
+ surface    106.4 and surface    108.4 are the same.    108.4 will be deleted.
+
+ surface    106.4 and surface    109.4 are the same.    109.4 will be deleted.
+
+ surface    106.4 and surface    110.4 are the same.    110.4 will be deleted.
+
+ surface    106.4 and surface    131.4 are the same.    131.4 will be deleted.
+
+ surface    111.3 and surface    112.3 are the same.    112.3 will be deleted.
+
+ surface    111.3 and surface    113.3 are the same.    113.3 will be deleted.
+
+ surface    111.3 and surface    114.3 are the same.    114.3 will be deleted.
+
+ surface    111.3 and surface    115.3 are the same.    115.3 will be deleted.
+
+ surface    111.3 and surface    132.3 are the same.    132.3 will be deleted.
+
+ surface    111.4 and surface    112.4 are the same.    112.4 will be deleted.
+
+ surface    111.4 and surface    113.4 are the same.    113.4 will be deleted.
+
+ surface    111.4 and surface    114.4 are the same.    114.4 will be deleted.
+
+ surface    111.4 and surface    115.4 are the same.    115.4 will be deleted.
+
+ surface    111.4 and surface    132.4 are the same.    132.4 will be deleted.
+
+ surface    116.3 and surface    117.3 are the same.    117.3 will be deleted.
+
+ surface    116.3 and surface    118.3 are the same.    118.3 will be deleted.
+
+ surface    116.3 and surface    119.3 are the same.    119.3 will be deleted.
+
+ surface    116.3 and surface    120.3 are the same.    120.3 will be deleted.
+
+ surface    116.3 and surface    133.3 are the same.    133.3 will be deleted.
+
+ surface    116.3 and surface    134.4 are the same.    134.4 will be deleted.
+
+ surface    116.4 and surface    117.4 are the same.    117.4 will be deleted.
+
+ surface    116.4 and surface    118.4 are the same.    118.4 will be deleted.
+
+ surface    116.4 and surface    119.4 are the same.    119.4 will be deleted.
+
+ surface    116.4 and surface    120.4 are the same.    120.4 will be deleted.
+
+ surface    116.4 and surface    133.4 are the same.    133.4 will be deleted.
+
+ surface    121.3 and surface    122.3 are the same.    122.3 will be deleted.
+
+ surface    121.3 and surface    123.3 are the same.    123.3 will be deleted.
+
+ surface    121.3 and surface    124.3 are the same.    124.3 will be deleted.
+
+ surface    121.3 and surface    125.3 are the same.    125.3 will be deleted.
+
+ surface    121.3 and surface    134.3 are the same.    134.3 will be deleted.
+
+ surface    121.4 and surface    122.4 are the same.    122.4 will be deleted.
+
+ surface    121.4 and surface    123.4 are the same.    123.4 will be deleted.
+
+ surface    121.4 and surface    124.4 are the same.    124.4 will be deleted.
+
+ surface    121.4 and surface    125.4 are the same.    125.4 will be deleted.
+
+ surface    126.5 and surface   1001   are the same.   1001   will be deleted.
+
+ surface    126.6 and surface   1002   are the same.   1002   will be deleted.
+ 
+ comment.  160 surfaces were deleted for being the same as others.
+1     initial source from ksrc card.                                                                    print table 90
+
+ original number of points                             1
+    points not in any cell                       0
+    points in cells of zero importance           0
+    points in void cells                         0
+    points in ambiguous cells                    0
+ total points rejected                                 0
+ points remaining                                      1
+ points after expansion or contraction              5000
+ nominal source size                                5000
+
+ initial guess for k(eff.)                      1.000000
+
+ cycles to skip before tallying                       50
+
+ number of keff cycles that can be stored           2500
+
+ 
+ comment. total fission nubar data are being used.
+1material composition                                                                                   print table 40
+
+ material
+  number     component nuclide, atom fraction
+
+     1           92235, 3.95000E-02      92238, 1.60500E-01      13027, 5.00000E-01       6000, 3.00000E-01
+
+     3            1001, 6.66000E-01       8016, 3.34000E-01
+     2            6000, 1.00000E+00
+
+
+
+
+
+ material
+  number     component nuclide, mass fraction
+
+     1           92235, 1.43751E-01      92238, 5.91575E-01      13027, 2.08882E-01       6000, 5.57914E-02
+
+     3            1001, 1.11617E-01       8016, 8.88383E-01
+     2            6000, 1.00000E+00
+1cell volumes and masses                                                                                print table 50
+
+        cell     atom          gram         input       calculated                            reason volume
+                density       density       volume        volume         mass       pieces    not calculated
+
+     1     1  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+     2     2  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+     3     3  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+     4     4  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+     5     5  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+     6     6  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+     7     7  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+     8     8  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+     9     9  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+    10    10  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    11    11  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    12    12  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    13    13  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+    14    14  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    15    15  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    16    16  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    17    17  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+    18    18  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    19    19  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+    20    20  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    21    21  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+    22    22  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    23    23  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    24    24  2.75995E-02   2.96000E+00   0.00000E+00   3.74706E+03   1.10913E+04      0                      
+    25    25  1.00142E-01   1.00000E+00   0.00000E+00   3.74706E+03   3.74706E+03      0                      
+    26    26  9.27545E-02   1.85000E+00   0.00000E+00   0.00000E+00   0.00000E+00      0      asymmetric      
+    27    99  1.00142E-01   1.00000E+00   0.00000E+00   0.00000E+00   0.00000E+00      0      asymmetric      
+    28   100  0.00000E+00   0.00000E+00   0.00000E+00   0.00000E+00   0.00000E+00      0      infinite        
+1surface areas                                                                                          print table 50
+
+         surface    input      calculated    reason area
+                    area          area       not calculated
+
+     2    101.1  0.00000E+00   2.43000E+03                   
+     3    101.2  0.00000E+00   2.43000E+03                   
+     4    101.3  0.00000E+00   2.31300E+03                   
+     5    101.4  0.00000E+00   2.31300E+03                   
+     6    101.5  0.00000E+00   1.56128E+03                   
+     7    101.6  0.00000E+00   1.56128E+03                   
+     9    102.1  0.00000E+00   2.43000E+03                   
+    10    102.2  0.00000E+00   2.43000E+03                   
+    16    103.1  0.00000E+00   2.43000E+03                   
+    17    103.2  0.00000E+00   2.43000E+03                   
+    23    104.1  0.00000E+00   2.43000E+03                   
+    24    104.2  0.00000E+00   2.43000E+03                   
+    30    105.1  0.00000E+00   2.43000E+03                   
+    31    105.2  0.00000E+00   2.43000E+03                   
+    39    106.3  0.00000E+00   2.31300E+03                   
+    40    106.4  0.00000E+00   2.31300E+03                   
+    74    111.3  0.00000E+00   2.31300E+03                   
+    75    111.4  0.00000E+00   2.31300E+03                   
+   109    116.3  0.00000E+00   2.31300E+03                   
+   110    116.4  0.00000E+00   2.31300E+03                   
+   144    121.3  0.00000E+00   2.31300E+03                   
+   145    121.4  0.00000E+00   2.31300E+03                   
+   212    126.1  0.00000E+00   0.00000E+00   asymmetric      
+   213    126.2  0.00000E+00   0.00000E+00   asymmetric      
+   214    126.3  0.00000E+00   0.00000E+00   asymmetric      
+   215    126.4  0.00000E+00   0.00000E+00   asymmetric      
+   218     1000  0.00000E+00   0.00000E+00   asymmetric      
+   219     1001  0.00000E+00   0.00000E+00   asymmetric      
+   220     1002  0.00000E+00   0.00000E+00   asymmetric      
+   221     1003  0.00000E+00   3.67566E+04                   
+   222     1004  0.00000E+00   1.32732E+04                   
+   223     1005  0.00000E+00   1.32732E+04                   
+1cells                                                                                                  print table 60
+
+                      atom        gram                                     neutron                                     
+        cell  mat    density     density     volume       mass     pieces importance                                   
+
+     1     1    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+     2     2    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     3     3    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     4     4    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     5     5    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+     6     6    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     7     7    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+     8     8    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     9     9    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    10    10    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    11    11    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    12    12    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    13    13    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    14    14    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    15    15    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    16    16    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    17    17    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    18    18    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    19    19    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    20    20    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    21    21    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    22    22    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    23    23    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    24    24    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    25    25    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    26    26    2  9.27545E-02 1.85000E+00 0.00000E+00 0.00000E+00     0  1.0000E+00                                   
+    27    99    3  1.00142E-01 1.00000E+00 0.00000E+00 0.00000E+00     0  1.0000E+00                                   
+    28   100    0  0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00     0  0.0000E+00                                   
+
+ total                                     9.36765E+04 2.11184E+05
+1surfaces                                                                                               print table 70
+
+         surface     trans  type   surface coefficients
+
+     1    101                rpp
+     2    101.1              px   -1.3570000E+01
+     3    101.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+     4    101.3              py   -1.4150000E+01
+     5    101.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.2250000E+01
+     6    101.5              pz    3.0000000E+01
+     7    101.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+     8    102                rpp
+     9    102.1              px   -4.8600000E+00
+    10    102.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   1.2570000E+01
+    15    103                rpp
+    16    103.1              px    3.8500000E+00
+    17    103.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   3.8600000E+00
+    22    104                rpp
+    23    104.1              px    1.2570000E+01
+    24    104.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -4.8600000E+00
+    29    105                rpp
+    30    105.1              px    2.1280000E+01
+    31    105.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -1.3570000E+01
+    36    106                rpp
+    39    106.3              py   -5.0500000E+00
+    40    106.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   1.3150000E+01
+    43    107                rpp
+    50    108                rpp
+    57    109                rpp
+    64    110                rpp
+    71    111                rpp
+    74    111.3              py    4.0500000E+00
+    75    111.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   4.0500000E+00
+    78    112                rpp
+    85    113                rpp
+    92    114                rpp
+    99    115                rpp
+   106    116                rpp
+   109    116.3              py    1.3150000E+01
+   110    116.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -5.0500000E+00
+   113    117                rpp
+   120    118                rpp
+   127    119                rpp
+   134    120                rpp
+   141    121                rpp
+   144    121.3              py    2.2250000E+01
+   145    121.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.4150000E+01
+   148    122                rpp
+   155    123                rpp
+   162    124                rpp
+   169    125                rpp
+   176    130                rpp
+   183    131                rpp
+   190    132                rpp
+   197    133                rpp
+   204    134                rpp
+   211    126                rpp
+   212    126.1              px    2.2000000E+01
+   213    126.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.2000000E+01
+   214    126.3              py    2.3000000E+01
+   215    126.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.3000000E+01
+   218   1000                cz    5.4290000E+01
+   219   1001                pz    2.5000000E+01
+   220   1002                pz   -2.5000000E+01
+   221   1003                cz    6.5000000E+01
+   222   1004                pz    4.5000000E+01
+   223   1005                pz   -4.5000000E+01
+1  identical surfaces                                                                                   print table 70
+
+   master surface     identical surfaces
+
+      101.1             106.1     111.1     116.1     121.1                                                            
+      101.2             106.2     111.2     116.2     121.2     130.2     131.2     132.2     133.2     134.2          
+      101.3             102.3     103.3     104.3     105.3     130.3                                                  
+      101.4             102.4     103.4     104.4     105.4     130.4                                                  
+      101.5             102.5     103.5     104.5     105.5     106.5     107.5     108.5     109.5     110.5     111.5
+                        112.5     113.5     114.5     115.5     116.5     117.5     118.5     119.5     120.5     121.5
+                        122.5     123.5     124.5     125.5     130.5     131.5     132.5     133.5     134.5          
+      101.6             102.6     103.6     104.6     105.6     106.6     107.6     108.6     109.6     110.6     111.6
+                        112.6     113.6     114.6     115.6     116.6     117.6     118.6     119.6     120.6     121.6
+                        122.6     123.6     124.6     125.6     130.6     131.6     132.6     133.6     134.6          
+      102.1             107.1     112.1     117.1     122.1                                                            
+      102.2             107.2     112.2     117.2     122.2                                                            
+      103.1             108.1     113.1     118.1     123.1                                                            
+      103.2             108.2     113.2     118.2     123.2                                                            
+      104.1             109.1     114.1     119.1     124.1                                                            
+      104.2             109.2     114.2     119.2     124.2                                                            
+      105.1             110.1     115.1     120.1     125.1     130.1     131.1     132.1     133.1     134.1          
+      105.2             110.2     115.2     120.2     125.2                                                            
+      106.3             107.3     108.3     109.3     110.3     131.3                                                  
+      106.4             107.4     108.4     109.4     110.4     131.4                                                  
+      111.3             112.3     113.3     114.3     115.3     132.3                                                  
+      111.4             112.4     113.4     114.4     115.4     132.4                                                  
+      116.3             117.3     118.3     119.3     120.3     133.3     134.4                                        
+      116.4             117.4     118.4     119.4     120.4     133.4                                                  
+      121.3             122.3     123.3     124.3     125.3     134.3                                                  
+      121.4             122.4     123.4     124.4     125.4                                                            
+     1001               126.5                                                                                          
+     1002               126.6                                                                                          
+
+
+   surface coefficients for identical surfaces not used.
+
+         surface     trans  type   surface coefficients
+
+    37    106.1              px   -1.3570000E+01
+    72    111.1              px   -1.3570000E+01
+   107    116.1              px   -1.3570000E+01
+   142    121.1              px   -1.3570000E+01
+    38    106.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+    73    111.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   108    116.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   143    121.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   178    130.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   185    131.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   192    132.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   199    133.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+   206    134.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   2.1280000E+01
+    11    102.3              py   -1.4150000E+01
+    18    103.3              py   -1.4150000E+01
+    25    104.3              py   -1.4150000E+01
+    32    105.3              py   -1.4150000E+01
+   179    130.3              py   -1.4150000E+01
+    12    102.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.2250000E+01
+    19    103.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.2250000E+01
+    26    104.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.2250000E+01
+    33    105.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.2250000E+01
+   180    130.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   2.2250000E+01
+    13    102.5              pz    3.0000000E+01
+    20    103.5              pz    3.0000000E+01
+    27    104.5              pz    3.0000000E+01
+    34    105.5              pz    3.0000000E+01
+    41    106.5              pz    3.0000000E+01
+    48    107.5              pz    3.0000000E+01
+    55    108.5              pz    3.0000000E+01
+    62    109.5              pz    3.0000000E+01
+    69    110.5              pz    3.0000000E+01
+    76    111.5              pz    3.0000000E+01
+    83    112.5              pz    3.0000000E+01
+    90    113.5              pz    3.0000000E+01
+    97    114.5              pz    3.0000000E+01
+   104    115.5              pz    3.0000000E+01
+   111    116.5              pz    3.0000000E+01
+   118    117.5              pz    3.0000000E+01
+   125    118.5              pz    3.0000000E+01
+   132    119.5              pz    3.0000000E+01
+   139    120.5              pz    3.0000000E+01
+   146    121.5              pz    3.0000000E+01
+   153    122.5              pz    3.0000000E+01
+   160    123.5              pz    3.0000000E+01
+   167    124.5              pz    3.0000000E+01
+   174    125.5              pz    3.0000000E+01
+   181    130.5              pz    3.0000000E+01
+   188    131.5              pz    3.0000000E+01
+   195    132.5              pz    3.0000000E+01
+   202    133.5              pz    3.0000000E+01
+   209    134.5              pz    3.0000000E+01
+    14    102.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    21    103.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    28    104.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    35    105.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    42    106.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    49    107.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    56    108.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    63    109.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    70    110.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    77    111.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    84    112.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    91    113.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    98    114.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   105    115.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   112    116.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   119    117.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   126    118.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   133    119.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   140    120.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   147    121.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   154    122.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   161    123.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   168    124.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   175    125.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   182    130.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   189    131.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   196    132.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   203    133.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+   210    134.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   3.0000000E+01
+    44    107.1              px   -4.8600000E+00
+    79    112.1              px   -4.8600000E+00
+   114    117.1              px   -4.8600000E+00
+   149    122.1              px   -4.8600000E+00
+    45    107.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   1.2570000E+01
+    80    112.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   1.2570000E+01
+   115    117.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   1.2570000E+01
+   150    122.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   1.2570000E+01
+    51    108.1              px    3.8500000E+00
+    86    113.1              px    3.8500000E+00
+   121    118.1              px    3.8500000E+00
+   156    123.1              px    3.8500000E+00
+    52    108.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   3.8600000E+00
+    87    113.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   3.8600000E+00
+   122    118.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   3.8600000E+00
+   157    123.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00   3.8600000E+00
+    58    109.1              px    1.2570000E+01
+    93    114.1              px    1.2570000E+01
+   128    119.1              px    1.2570000E+01
+   163    124.1              px    1.2570000E+01
+    59    109.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -4.8600000E+00
+    94    114.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -4.8600000E+00
+   129    119.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -4.8600000E+00
+   164    124.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -4.8600000E+00
+    65    110.1              px    2.1280000E+01
+   100    115.1              px    2.1280000E+01
+   135    120.1              px    2.1280000E+01
+   170    125.1              px    2.1280000E+01
+   177    130.1              px    2.1280000E+01
+   184    131.1              px    2.1280000E+01
+   191    132.1              px    2.1280000E+01
+   198    133.1              px    2.1280000E+01
+   205    134.1              px    2.1280000E+01
+    66    110.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -1.3570000E+01
+   101    115.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -1.3570000E+01
+   136    120.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -1.3570000E+01
+   171    125.2              p    -1.0000000E+00   0.0000000E+00   0.0000000E+00  -1.3570000E+01
+    46    107.3              py   -5.0500000E+00
+    53    108.3              py   -5.0500000E+00
+    60    109.3              py   -5.0500000E+00
+    67    110.3              py   -5.0500000E+00
+   186    131.3              py   -5.0500000E+00
+    47    107.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   1.3150000E+01
+    54    108.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   1.3150000E+01
+    61    109.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   1.3150000E+01
+    68    110.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   1.3150000E+01
+   187    131.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   1.3150000E+01
+    81    112.3              py    4.0500000E+00
+    88    113.3              py    4.0500000E+00
+    95    114.3              py    4.0500000E+00
+   102    115.3              py    4.0500000E+00
+   193    132.3              py    4.0500000E+00
+    82    112.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   4.0500000E+00
+    89    113.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   4.0500000E+00
+    96    114.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   4.0500000E+00
+   103    115.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   4.0500000E+00
+   194    132.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00   4.0500000E+00
+   116    117.3              py    1.3150000E+01
+   123    118.3              py    1.3150000E+01
+   130    119.3              py    1.3150000E+01
+   137    120.3              py    1.3150000E+01
+   200    133.3              py    1.3150000E+01
+   208    134.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.3150000E+01
+   117    117.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -5.0500000E+00
+   124    118.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -5.0500000E+00
+   131    119.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -5.0500000E+00
+   138    120.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -5.0500000E+00
+   201    133.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -5.0500000E+00
+   151    122.3              py    2.2250000E+01
+   158    123.3              py    2.2250000E+01
+   165    124.3              py    2.2250000E+01
+   172    125.3              py    2.2250000E+01
+   207    134.3              py    2.2250000E+01
+   152    122.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.4150000E+01
+   159    123.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.4150000E+01
+   166    124.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.4150000E+01
+   173    125.4              p     0.0000000E+00  -1.0000000E+00   0.0000000E+00  -1.4150000E+01
+   216    126.5              pz    2.5000000E+01
+   217    126.6              p     0.0000000E+00   0.0000000E+00  -1.0000000E+00   2.5000000E+01
+1  cell temperatures in mev for the free-gas thermal neutron treatment.                                 print table 72
+
+   all non-zero importance cells with materials have a temperature for thermal neutrons of 2.5300E-08 mev.
+
+ ***************************************************
+ * Random Number Generator  =                    1 *
+ * Random Number Seed       =       19073486328125 *
+ * Random Number Multiplier =       19073486328125 *
+ * Random Number Adder      =                    0 *
+ * Random Number Bits Used  =                   48 *
+ * Random Number Stride     =               152917 *
+ ***************************************************
+
+
+          1 warning message so far.
+
+         4 fatal errors so far.
+1physical constants                                                                                     print table 98
+
+
+   name                    value     description
+
+   huge      1.0000000000000E+36     infinity
+    pie      3.1415926535898E+00     pi
+  euler      5.7721566490153E-01     euler constant
+ avogad      6.0220434469282E+23     avogadro number (molecules/mole)
+  aneut      1.0086649670000E+00     neutron mass (amu)
+  avgdn      5.9703109000000E-01     avogadro number/neutron mass (1.e-24*molecules/mole/amu)
+  slite      2.9979250000000E+02     speed of light (cm/shake)
+ planck      4.1357320000000E-13     planck constant (mev shake)
+  fscon      1.3703930000000E+02     inverse fine structure constant h*c/(2*pi*e**2)
+ gpt(1)      9.3958000000000E+02     neutron mass (mev)
+ gpt(3)      5.1100800000000E-01     electron mass (mev)
+
+
+ fission q-values:     nuclide    q(mev)   nuclide    q(mev)
+                         90232    171.91     91233    175.57
+                         92233    180.84     92234    179.45
+                         92235    180.88     92236    179.50
+                         92237    180.40     92238    181.31
+                         92239    180.40     92240    180.40
+                         93237    183.67     94238    186.65
+                         94239    189.44     94240    186.36
+                         94241    188.99     94242    185.98
+                         94243    187.48     95241    190.83
+                         95242    190.54     95243    190.25
+                         96242    190.49     96244    190.49
+                         other    180.00
+
+
+ the following compilation options were used:
+
+     cheap
+     dec
+     plot
+     mcplot
+     gkssim
+     xlib
+     default datapath: C:\Program Files (x86)\LANL\MCNPDATA                                            
+                       C:\Progra~1\LANL\MCNPdata                                                       
+1cross-section tables                                                                                   print table 100
+
+     table    length
+
+                        tables from file actia                                                           
+
+   1001.62c    5202  1-h-1 at 293.6K from endf-vi.8 njoy99.50                                     mat 125      12/05/01
+   8016.62c  170541  8-o-16 at 293.6K from endf-vi.8 njoy99.50                                    mat 825      12/05/01
+
+                        tables from file endf66a                                                         
+
+   6000.66c   44688  6-c-0 at 293.6K from endf-vi.6 njoy99.50                                     mat 600      07/13/01
+  13027.66c   75316  13-al-27 at 293.6K from endf-vi.6 njoy99.50                                  mat1325      07/24/01
+
+                        tables from file endf66c                                                         
+
+  92235.66c  583724  92-u-235 at 293.6K from endf-vi.5 njoy99.50        total nu                  mat9228      08/14/01
+                     probability tables used from 2.2500E-03 to 2.5000E-02 mev.
+  92238.66c  669744  92-u-238 at 293.6K from endf-vi.5 njoy99.50        total nu                  mat9237      08/14/01
+                     probability tables used from 1.0000E-02 to 1.4903E-01 mev.
+
+  total     1549215
+
+          1 warning message so far.
+
+         4 fatal errors so far.
+
+
+ run terminated because of fatal errors.
+
+ computer time =    0.01 minutes
+
+ mcnp     version 5     11042003                     05/18/25 14:30:35                     probid =  05/18/25 14:30:35 

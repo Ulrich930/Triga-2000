@@ -1,0 +1,541 @@
+          Thread Name & Version = MCNP5_RSICC, 1.20
+                                _                                      
+          ._ _    _  ._   ._   |_                                      
+          | | |  (_  | |  |_)   _)                                     
+                          |                                            
+ +--------------------------------------------------------------------+
+ |   This program was prepared by the Regents of the University of    |
+ |California at Los Alamos National Laboratory (the University) under |
+ |  contract number W-7405-ENG-36 with the U.S. Department of Energy  |
+ |(DoE).  The University has certain rights in the program pursuant to|
+ |  the contract and the program should not be copied or distributed  |
+ | outside your organization.  All rights in the program are reserved |
+ |by the DoE and the University.  Neither the U.S. Government nor the |
+ | University makes any warranty, express or implied, or assumes any  |
+ |     liability or responsibility for the use of this software.      |
+ +--------------------------------------------------------------------+
+  
+1mcnp     version 5     ld=11042003                     05/18/25 15:11:05 
+ *************************************************************************                 probid =  05/18/25 15:11:05 
+ i=t3.txt o=rt4.out                                                              
+
+    1-       TRIGA 2000 Core - VisEd-Compatible Full 5x5 Explicit Core                       
+    2-       C ------------------------------------------------------------                  
+    3-       C Author: Ulrich Nzau Lumendo | Date: 2025-03-31                                
+    4-       C ------------------------------------------------------------                  
+    5-       c                                                                               
+    6-       C ================= CELL CARDS (5x5 Grid) ====================                  
+    7-       C Layer 1 (Bottom)                                                              
+    8-       1   3  -1.0     -101   imp:n=1   $ Inlet Plenum (L1C1)                          
+    9-       2   1  -2.96    -102   imp:n=1   $ Fuel (L1C2)                                  
+   10-       3   1  -2.96    -103   imp:n=1   $ Fuel (L1C3)                                  
+   11-       4   1  -2.96    -104   imp:n=1   $ Fuel (L1C4)                                  
+   12-       5   3  -1.0     -105   imp:n=1   $ Inlet Plenum (L1C5)                          
+   13-       c                                                                               
+   14-       C Layer 2                                                                       
+   15-       6   1  -2.96    -106   imp:n=1   $ Fuel (L2C1)                                  
+   16-       7   4  -2.5     -107   imp:n=1   $ Control Rod (L2C2)                           
+   17-       8   1  -2.96    -108   imp:n=1   $ Fuel (L2C3)                                  
+   18-       9   4  -2.5     -109   imp:n=1   $ Control Rod (L2C4)                           
+   19-       10  1  -2.96    -110   imp:n=1   $ Fuel (L2C5)                                  
+   20-       c                                                                               
+   21-       C Layer 3 (Central)                                                             
+   22-       11  1  -2.96    -111   imp:n=1   $ Fuel (L3C1)                                  
+   23-       12  1  -2.96    -112   imp:n=1   $ Fuel (L3C2)                                  
+   24-       13  3  -1.0     -113   imp:n=1   $ Central Inlet Plenum (L3C3)                  
+   25-       14  1  -2.96    -114   imp:n=1   $ Fuel (L3C4)                                  
+   26-       15  1  -2.96    -115   imp:n=1   $ Fuel (L3C5)                                  
+   27-       c                                                                               
+   28-       C Layer 4                                                                       
+   29-       16  1  -2.96    -116   imp:n=1   $ Fuel (L4C1)                                  
+   30-       17  4  -2.5     -117   imp:n=1   $ Control Rod (L4C2)                           
+   31-       18  1  -2.96    -118   imp:n=1   $ Fuel (L4C3)                                  
+   32-       19  4  -2.5     -119   imp:n=1   $ Control Rod (L4C4)                           
+   33-       20  1  -2.96    -120   imp:n=1   $ Fuel (L4C5)                                  
+   34-       c                                                                               
+   35-       C Layer 5 (Top)                                                                 
+   36-       21  3  -1.0     -121   imp:n=1   $ Inlet Plenum (L5C1)                          
+   37-       22  1  -2.96    -122   imp:n=1   $ Fuel (L5C2)                                  
+   38-       23  1  -2.96    -123   imp:n=1   $ Fuel (L5C3)                                  
+   39-       24  1  -2.96    -124   imp:n=1   $ Fuel (L5C4)                                  
+   40-       25  3  -1.0     -125   imp:n=1   $ Inlet Plenum (L5C5)                          
+   41-       c                                                                               
+   42-       C Graphite Reflector (Commented)                                                
+   43-       26 2  -1.85 126 -1000 -1001 1002  imp:n=1                                       
+   44-       c                                                                               
+   45-       C Universe Boundary                                                             
+   46-       99  3  -1  -1003 -1004 1005  &                                                  
+   47-           #1 #2 #3 #4 #5 #6 #7 #8 #9 #10 &                                            
+   48-           #11 #12 #13 #14 #15 #16 #17 #18 #19 #20 &                                   
+   49-           #21 #22 #23 #24 #25 #26              imp:n=1                                
+   50-       100  0   1003:1004:-1005         imp:n=0   $ External Void                      
+   51-                                                                                       
+   52-       C ================ SURFACE DEFINITIONS ========================                 
+   53-       C Layer 1 Surfaces (Z: 0-60 cm)                                                 
+   54-       101 RPP -21.28 -13.57  -22.25 -14.15  -30 30   $ L1C1                           
+   55-       102 RPP -12.57  -4.86  -22.25 -14.15  -30 30   $ L1C2                           
+   56-       103 RPP  -3.86   3.85  -22.25 -14.15  -30 30   $ L1C3                           
+   57-       104 RPP   4.86  12.57  -22.25 -14.15  -30 30   $ L1C4                           
+   58-       105 RPP  13.57  21.28  -22.25 -14.15  -30 30   $ L1C5                           
+   59-       c                                                                               
+   60-       C Layer 2 Surfaces (Z: 0-60 cm)                                                 
+   61-       106 RPP -21.28 -13.57  -13.15  -5.05  -30 30   $ L2C1                           
+   62-       107 RPP -12.57  -4.86  -13.15  -5.05  0 30   $ L2C2                             
+   63-       108 RPP  -3.86   3.85  -13.15  -5.05  -30 30   $ L2C3                           
+   64-       109 RPP   4.86  12.57  -13.15  -5.05  0 30   $ L2C4                             
+   65-       110 RPP  13.57  21.28  -13.15  -5.05  -30 30   $ L2C5                           
+   66-       c                                                                               
+   67-       C Layer 3 Surfaces (Z: 0-60 cm)                                                 
+   68-       111 RPP -21.28 -13.57   -4.05   4.05  -30 30   $ L3C1                           
+   69-       112 RPP -12.57  -4.86   -4.05   4.05  -30 30   $ L3C2                           
+   70-       113 RPP  -3.86   3.85   -4.05   4.05  -30 30   $ L3C3                           
+   71-       114 RPP   4.86  12.57   -4.05   4.05  -30 30   $ L3C4                           
+   72-       115 RPP  13.57  21.28   -4.05   4.05  -30 30   $ L3C5                           
+   73-       c                                                                               
+   74-       C Layer 4 Surfaces (Z: 0-60 cm)                                                 
+   75-       116 RPP -21.28 -13.57    5.05  13.15  -30 30   $ L4C1                           
+   76-       117 RPP -12.57  -4.86    5.05  13.15  0 30   $ L4C2                             
+   77-       118 RPP  -3.86   3.85    5.05  13.15  -30 30   $ L4C3                           
+   78-       119 RPP   4.86  12.57    5.05  13.15  0 30   $ L4C4                             
+   79-       120 RPP  13.57  21.28    5.05  13.15  -30 30   $ L4C5                           
+   80-       c                                                                               
+   81-       C Layer 5 Surfaces (Z: 0-60 cm)                                                 
+   82-       121 RPP -21.28 -13.57   14.15  22.25  -30 30   $ L5C1                           
+   83-       122 RPP -12.57  -4.86   14.15  22.25  -30 30   $ L5C2                           
+   84-       123 RPP  -3.86   3.85   14.15  22.25  -30 30   $ L5C3                           
+   85-       124 RPP   4.86  12.57   14.15  22.25  -30 30   $ L5C4                           
+   86-       125 RPP  13.57  21.28   14.15  22.25  -30 30   $ L5C5                           
+   87-       c                                                                               
+   88-       130 RPP -21.28 21.28  -22.25 -14.15  -30 30                                     
+   89-       131 RPP -21.28 21.28  -13.15 -5.05   -30 30                                     
+   90-       132 RPP -21.28 21.28  -4.05 4.05  -30 30                                        
+   91-       133 RPP -21.28 21.28  5.05 13.15  -30 30                                        
+   92-       134 RPP -21.28 21.28  13.15 22.25  -30 30                                       
+   93-       c                                                                               
+   94-       126 RPP -22 22 -23 23 -25 25                                                    
+   95-       c                                                                               
+   96-       C Core Geometry                                                                 
+   97-       1000 CZ 54.29    $ Radial Boundary (R = 54.29 cm)                               
+   98-       1001 PZ 25       $ Upper Z Boundary (+75 cm)                                    
+   99-       1002 PZ -25      $ Lower Z Boundary (-15 cm)                                    
+  100-       c                                                                               
+  101-       C global Geometry                                                               
+  102-       1003 CZ 65    $ Radial Boundary (R = 54.29 cm)                                  
+  103-       1004 PZ 45       $ Upper Z Boundary (+75 cm)                                    
+  104-       1005 PZ -45      $ Lower Z Boundary (-15 cm)                                    
+  105-                                                                                       
+  106-       C ================ MATERIAL DEFINITIONS =======================                 
+  107-       m1 92235.66c 0.0395 &                                                           
+  108-          92238.66c 0.1605 &                                                           
+  109-          13027.66c 0.50   &                                                           
+  110-          6000.66c 0.30                                                                
+  111-       m3 1001.62c 0.666   &                                                           
+  112-          8016.62c 0.334                                                               
+  113-       m4 47107.66c 0.90   &                                                           
+  114-          48112.66c 0.10                                                               
+  115-       m2 6000.66c 1.0                                                                 
+  116-       C ================ PHYSICS & SOURCE ===========================                 
+  117-       mode n                                                                          
+  118-       kcode 5000 1.0 50 150    $ Criticality: 5000 cycles, 50 skipped                 
+  119-       ksrc 0 0 0               $ Point source at origin                               
+
+ surface    101.1 and surface    106.1 are the same.    106.1 will be deleted.
+
+ surface    101.1 and surface    111.1 are the same.    111.1 will be deleted.
+
+ surface    101.1 and surface    116.1 are the same.    116.1 will be deleted.
+
+ surface    101.1 and surface    121.1 are the same.    121.1 will be deleted.
+
+ surface    101.2 and surface    106.2 are the same.    106.2 will be deleted.
+
+ surface    101.2 and surface    111.2 are the same.    111.2 will be deleted.
+
+ surface    101.2 and surface    116.2 are the same.    116.2 will be deleted.
+
+ surface    101.2 and surface    121.2 are the same.    121.2 will be deleted.
+
+ surface    101.2 and surface    130.2 are the same.    130.2 will be deleted.
+
+ surface    101.2 and surface    131.2 are the same.    131.2 will be deleted.
+
+ surface    101.2 and surface    132.2 are the same.    132.2 will be deleted.
+
+ surface    101.2 and surface    133.2 are the same.    133.2 will be deleted.
+
+ surface    101.2 and surface    134.2 are the same.    134.2 will be deleted.
+
+ surface    101.3 and surface    102.3 are the same.    102.3 will be deleted.
+
+ surface    101.3 and surface    103.3 are the same.    103.3 will be deleted.
+
+ surface    101.3 and surface    104.3 are the same.    104.3 will be deleted.
+
+ surface    101.3 and surface    105.3 are the same.    105.3 will be deleted.
+
+ surface    101.3 and surface    130.3 are the same.    130.3 will be deleted.
+
+ surface    101.4 and surface    102.4 are the same.    102.4 will be deleted.
+
+ surface    101.4 and surface    103.4 are the same.    103.4 will be deleted.
+
+ surface    101.4 and surface    104.4 are the same.    104.4 will be deleted.
+
+ surface    101.4 and surface    105.4 are the same.    105.4 will be deleted.
+
+ surface    101.4 and surface    130.4 are the same.    130.4 will be deleted.
+
+ surface    101.5 and surface    102.5 are the same.    102.5 will be deleted.
+
+ surface    101.5 and surface    103.5 are the same.    103.5 will be deleted.
+
+ surface    101.5 and surface    104.5 are the same.    104.5 will be deleted.
+
+ surface    101.5 and surface    105.5 are the same.    105.5 will be deleted.
+
+ surface    101.5 and surface    106.5 are the same.    106.5 will be deleted.
+
+ surface    101.5 and surface    107.5 are the same.    107.5 will be deleted.
+
+ surface    101.5 and surface    108.5 are the same.    108.5 will be deleted.
+
+ surface    101.5 and surface    109.5 are the same.    109.5 will be deleted.
+
+ surface    101.5 and surface    110.5 are the same.    110.5 will be deleted.
+
+ surface    101.5 and surface    111.5 are the same.    111.5 will be deleted.
+
+ surface    101.5 and surface    112.5 are the same.    112.5 will be deleted.
+
+ surface    101.5 and surface    113.5 are the same.    113.5 will be deleted.
+
+ surface    101.5 and surface    114.5 are the same.    114.5 will be deleted.
+
+ surface    101.5 and surface    115.5 are the same.    115.5 will be deleted.
+
+ surface    101.5 and surface    116.5 are the same.    116.5 will be deleted.
+
+ surface    101.5 and surface    117.5 are the same.    117.5 will be deleted.
+
+ surface    101.5 and surface    118.5 are the same.    118.5 will be deleted.
+
+ surface    101.5 and surface    119.5 are the same.    119.5 will be deleted.
+
+ surface    101.5 and surface    120.5 are the same.    120.5 will be deleted.
+
+ surface    101.5 and surface    121.5 are the same.    121.5 will be deleted.
+
+ surface    101.5 and surface    122.5 are the same.    122.5 will be deleted.
+
+ surface    101.5 and surface    123.5 are the same.    123.5 will be deleted.
+
+ surface    101.5 and surface    124.5 are the same.    124.5 will be deleted.
+
+ surface    101.5 and surface    125.5 are the same.    125.5 will be deleted.
+
+ surface    101.5 and surface    130.5 are the same.    130.5 will be deleted.
+
+ surface    101.5 and surface    131.5 are the same.    131.5 will be deleted.
+
+ surface    101.5 and surface    132.5 are the same.    132.5 will be deleted.
+
+ surface    101.5 and surface    133.5 are the same.    133.5 will be deleted.
+
+ surface    101.5 and surface    134.5 are the same.    134.5 will be deleted.
+
+ surface    101.6 and surface    102.6 are the same.    102.6 will be deleted.
+
+ surface    101.6 and surface    103.6 are the same.    103.6 will be deleted.
+
+ surface    101.6 and surface    104.6 are the same.    104.6 will be deleted.
+
+ surface    101.6 and surface    105.6 are the same.    105.6 will be deleted.
+
+ surface    101.6 and surface    106.6 are the same.    106.6 will be deleted.
+
+ surface    101.6 and surface    108.6 are the same.    108.6 will be deleted.
+
+ surface    101.6 and surface    110.6 are the same.    110.6 will be deleted.
+
+ surface    101.6 and surface    111.6 are the same.    111.6 will be deleted.
+
+ surface    101.6 and surface    112.6 are the same.    112.6 will be deleted.
+
+ surface    101.6 and surface    113.6 are the same.    113.6 will be deleted.
+
+ surface    101.6 and surface    114.6 are the same.    114.6 will be deleted.
+
+ surface    101.6 and surface    115.6 are the same.    115.6 will be deleted.
+
+ surface    101.6 and surface    116.6 are the same.    116.6 will be deleted.
+
+ surface    101.6 and surface    118.6 are the same.    118.6 will be deleted.
+
+ surface    101.6 and surface    120.6 are the same.    120.6 will be deleted.
+
+ surface    101.6 and surface    121.6 are the same.    121.6 will be deleted.
+
+ surface    101.6 and surface    122.6 are the same.    122.6 will be deleted.
+
+ surface    101.6 and surface    123.6 are the same.    123.6 will be deleted.
+
+ surface    101.6 and surface    124.6 are the same.    124.6 will be deleted.
+
+ surface    101.6 and surface    125.6 are the same.    125.6 will be deleted.
+
+ surface    101.6 and surface    130.6 are the same.    130.6 will be deleted.
+
+ surface    101.6 and surface    131.6 are the same.    131.6 will be deleted.
+
+ surface    101.6 and surface    132.6 are the same.    132.6 will be deleted.
+
+ surface    101.6 and surface    133.6 are the same.    133.6 will be deleted.
+
+ surface    101.6 and surface    134.6 are the same.    134.6 will be deleted.
+
+ surface    102.1 and surface    107.1 are the same.    107.1 will be deleted.
+
+ surface    102.1 and surface    112.1 are the same.    112.1 will be deleted.
+
+ surface    102.1 and surface    117.1 are the same.    117.1 will be deleted.
+
+ surface    102.1 and surface    122.1 are the same.    122.1 will be deleted.
+
+ surface    102.2 and surface    107.2 are the same.    107.2 will be deleted.
+
+ surface    102.2 and surface    112.2 are the same.    112.2 will be deleted.
+
+ surface    102.2 and surface    117.2 are the same.    117.2 will be deleted.
+
+ surface    102.2 and surface    122.2 are the same.    122.2 will be deleted.
+
+ surface    103.1 and surface    108.1 are the same.    108.1 will be deleted.
+
+ surface    103.1 and surface    113.1 are the same.    113.1 will be deleted.
+
+ surface    103.1 and surface    118.1 are the same.    118.1 will be deleted.
+
+ surface    103.1 and surface    123.1 are the same.    123.1 will be deleted.
+
+ surface    103.2 and surface    108.2 are the same.    108.2 will be deleted.
+
+ surface    103.2 and surface    113.2 are the same.    113.2 will be deleted.
+
+ surface    103.2 and surface    118.2 are the same.    118.2 will be deleted.
+
+ surface    103.2 and surface    123.2 are the same.    123.2 will be deleted.
+
+ surface    104.1 and surface    109.1 are the same.    109.1 will be deleted.
+
+ surface    104.1 and surface    114.1 are the same.    114.1 will be deleted.
+
+ surface    104.1 and surface    119.1 are the same.    119.1 will be deleted.
+
+ surface    104.1 and surface    124.1 are the same.    124.1 will be deleted.
+
+ surface    104.2 and surface    109.2 are the same.    109.2 will be deleted.
+
+ surface    104.2 and surface    114.2 are the same.    114.2 will be deleted.
+
+ surface    104.2 and surface    119.2 are the same.    119.2 will be deleted.
+
+ surface    104.2 and surface    124.2 are the same.    124.2 will be deleted.
+
+ surface    105.1 and surface    110.1 are the same.    110.1 will be deleted.
+
+ surface    105.1 and surface    115.1 are the same.    115.1 will be deleted.
+
+ surface    105.1 and surface    120.1 are the same.    120.1 will be deleted.
+
+ surface    105.1 and surface    125.1 are the same.    125.1 will be deleted.
+
+ surface    105.1 and surface    130.1 are the same.    130.1 will be deleted.
+
+ surface    105.1 and surface    131.1 are the same.    131.1 will be deleted.
+
+ surface    105.1 and surface    132.1 are the same.    132.1 will be deleted.
+
+ surface    105.1 and surface    133.1 are the same.    133.1 will be deleted.
+
+ surface    105.1 and surface    134.1 are the same.    134.1 will be deleted.
+
+ surface    105.2 and surface    110.2 are the same.    110.2 will be deleted.
+
+ surface    105.2 and surface    115.2 are the same.    115.2 will be deleted.
+
+ surface    105.2 and surface    120.2 are the same.    120.2 will be deleted.
+
+ surface    105.2 and surface    125.2 are the same.    125.2 will be deleted.
+
+ surface    106.3 and surface    107.3 are the same.    107.3 will be deleted.
+
+ surface    106.3 and surface    108.3 are the same.    108.3 will be deleted.
+
+ surface    106.3 and surface    109.3 are the same.    109.3 will be deleted.
+
+ surface    106.3 and surface    110.3 are the same.    110.3 will be deleted.
+
+ surface    106.3 and surface    131.3 are the same.    131.3 will be deleted.
+
+ surface    106.4 and surface    107.4 are the same.    107.4 will be deleted.
+
+ surface    106.4 and surface    108.4 are the same.    108.4 will be deleted.
+
+ surface    106.4 and surface    109.4 are the same.    109.4 will be deleted.
+
+ surface    106.4 and surface    110.4 are the same.    110.4 will be deleted.
+
+ surface    106.4 and surface    131.4 are the same.    131.4 will be deleted.
+
+ surface    107.6 and surface    109.6 are the same.    109.6 will be deleted.
+
+ surface    107.6 and surface    117.6 are the same.    117.6 will be deleted.
+
+ surface    107.6 and surface    119.6 are the same.    119.6 will be deleted.
+
+ surface    111.3 and surface    112.3 are the same.    112.3 will be deleted.
+
+ surface    111.3 and surface    113.3 are the same.    113.3 will be deleted.
+
+ surface    111.3 and surface    114.3 are the same.    114.3 will be deleted.
+
+ surface    111.3 and surface    115.3 are the same.    115.3 will be deleted.
+
+ surface    111.3 and surface    132.3 are the same.    132.3 will be deleted.
+
+ surface    111.4 and surface    112.4 are the same.    112.4 will be deleted.
+
+ surface    111.4 and surface    113.4 are the same.    113.4 will be deleted.
+
+ surface    111.4 and surface    114.4 are the same.    114.4 will be deleted.
+
+ surface    111.4 and surface    115.4 are the same.    115.4 will be deleted.
+
+ surface    111.4 and surface    132.4 are the same.    132.4 will be deleted.
+
+ surface    116.3 and surface    117.3 are the same.    117.3 will be deleted.
+
+ surface    116.3 and surface    118.3 are the same.    118.3 will be deleted.
+
+ surface    116.3 and surface    119.3 are the same.    119.3 will be deleted.
+
+ surface    116.3 and surface    120.3 are the same.    120.3 will be deleted.
+
+ surface    116.3 and surface    133.3 are the same.    133.3 will be deleted.
+
+ surface    116.3 and surface    134.4 are the same.    134.4 will be deleted.
+
+ surface    116.4 and surface    117.4 are the same.    117.4 will be deleted.
+
+ surface    116.4 and surface    118.4 are the same.    118.4 will be deleted.
+
+ surface    116.4 and surface    119.4 are the same.    119.4 will be deleted.
+
+ surface    116.4 and surface    120.4 are the same.    120.4 will be deleted.
+
+ surface    116.4 and surface    133.4 are the same.    133.4 will be deleted.
+
+ surface    121.3 and surface    122.3 are the same.    122.3 will be deleted.
+
+ surface    121.3 and surface    123.3 are the same.    123.3 will be deleted.
+
+ surface    121.3 and surface    124.3 are the same.    124.3 will be deleted.
+
+ surface    121.3 and surface    125.3 are the same.    125.3 will be deleted.
+
+ surface    121.3 and surface    134.3 are the same.    134.3 will be deleted.
+
+ surface    121.4 and surface    122.4 are the same.    122.4 will be deleted.
+
+ surface    121.4 and surface    123.4 are the same.    123.4 will be deleted.
+
+ surface    121.4 and surface    124.4 are the same.    124.4 will be deleted.
+
+ surface    121.4 and surface    125.4 are the same.    125.4 will be deleted.
+
+ surface    126.5 and surface   1001   are the same.   1001   will be deleted.
+
+ surface    126.6 and surface   1002   are the same.   1002   will be deleted.
+ 
+ comment.  159 surfaces were deleted for being the same as others.
+ 
+ comment. total fission nubar data are being used.
+1cells                                                                                                  print table 60
+
+                      atom        gram                                     neutron                                     
+        cell  mat    density     density     volume       mass     pieces importance                                   
+
+     1     1    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+     2     2    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     3     3    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     4     4    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     5     5    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+     6     6    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     7     7    4  1.40172E-02 2.50000E+00 1.87353E+03 4.68383E+03     0  1.0000E+00                                   
+     8     8    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+     9     9    4  1.40172E-02 2.50000E+00 1.87353E+03 4.68383E+03     0  1.0000E+00                                   
+    10    10    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    11    11    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    12    12    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    13    13    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    14    14    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    15    15    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    16    16    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    17    17    4  1.40172E-02 2.50000E+00 1.87353E+03 4.68383E+03     0  1.0000E+00                                   
+    18    18    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    19    19    4  1.40172E-02 2.50000E+00 1.87353E+03 4.68383E+03     0  1.0000E+00                                   
+    20    20    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    21    21    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    22    22    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    23    23    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    24    24    1  2.75995E-02 2.96000E+00 3.74706E+03 1.10913E+04     0  1.0000E+00                                   
+    25    25    3  1.00142E-01 1.00000E+00 3.74706E+03 3.74706E+03     0  1.0000E+00                                   
+    26    26    2  9.27545E-02 1.85000E+00 0.00000E+00 0.00000E+00     0  1.0000E+00                                   
+    27    99    3  1.00142E-01 1.00000E+00 0.00000E+00 0.00000E+00     0  1.0000E+00                                   
+    28   100    0  0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00     0  0.0000E+00                                   
+
+ total                                     8.61824E+04 2.14931E+05
+
+ ***************************************************
+ * Random Number Generator  =                    1 *
+ * Random Number Seed       =       19073486328125 *
+ * Random Number Multiplier =       19073486328125 *
+ * Random Number Adder      =                    0 *
+ * Random Number Bits Used  =                   48 *
+ * Random Number Stride     =               152917 *
+ ***************************************************
+
+1cross-section tables                                                                                   print table 100
+
+     table    length
+
+                        tables from file actia                                                           
+
+   1001.62c    5202  1-h-1 at 293.6K from endf-vi.8 njoy99.50                                     mat 125      12/05/01
+   8016.62c  170541  8-o-16 at 293.6K from endf-vi.8 njoy99.50                                    mat 825      12/05/01
+
+                        tables from file endf66a                                                         
+
+   6000.66c   44688  6-c-0 at 293.6K from endf-vi.6 njoy99.50                                     mat 600      07/13/01
+  13027.66c   75316  13-al-27 at 293.6K from endf-vi.6 njoy99.50                                  mat1325      07/24/01
+
+                        tables from file endf66b                                                         
+
+  47107.66c   61639  47-ag-107 at 293.6K from endf-vi.0 njoy99.50                                 mat4725      08/08/01
+  48112.66c   82243  48-cd-112 at 293.6K from endf-vi.4 njoy99.50                                 mat4843      08/08/01
+                     probability tables used from 7.3500E-03 to 1.0000E-01 mev.
+
+                        tables from file endf66c                                                         
+
+  92235.66c  583724  92-u-235 at 293.6K from endf-vi.5 njoy99.50        total nu                  mat9228      08/14/01
+                     probability tables used from 2.2500E-03 to 2.5000E-02 mev.
+  92238.66c  669744  92-u-238 at 293.6K from endf-vi.5 njoy99.50        total nu                  mat9237      08/14/01
+                     probability tables used from 1.0000E-02 to 1.4903E-01 mev.
+
+  total     1693097
+
+ ***********************************************************************************************************************
+ dump no.    1 on file runtpj       nps =         0     coll =              0     ctm =    0.00     nrn =              0
+
+
+ source distribution written to file srctv           cycle =     0
