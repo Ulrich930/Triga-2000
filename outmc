@@ -1,0 +1,13 @@
+ mcnp     ver=5beta, ld=08-xx-02                                      
+          Thread Name & Version = mcnp5beta, 4.13
+          Copyright LANL/UC/DOE - see output file
+                                    _                                  
+          ._ _    _  ._   ._   __  |_   __  |_    _   _|_   _.         
+          | | |  (_  | |  |_)       _)      |_)  (/_   |_  (_|         
+                          |                                            
+  
+ 
+ comment.  160 surfaces were deleted for being the same as others.
+ comment. using random number generator  1, initial seed = 19073486328125      
+ imcn   is done
+

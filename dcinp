@@ -1,0 +1,72 @@
+    1    1
+c ------------------------------------------------------------                  
+    1    1
+c Author: Ulrich Nzau Lumendo | Date: 2025-03-31                                
+    1    1
+c ------------------------------------------------------------                  
+    1    1
+c                                                                               
+    1    1
+c ================= CELL CARDS (5x5 Grid) ====================                  
+    1    1
+c Layer 1 (Bottom)                                                              
+    1    6
+c                                                                               
+    1    6
+c Layer 2                                                                       
+    1   11
+c                                                                               
+    1   11
+c Layer 3 (Central)                                                             
+    1   16
+c                                                                               
+    1   16
+c Layer 4                                                                       
+    1   21
+c                                                                               
+    1   21
+c Layer 5 (Top)                                                                 
+    1   26
+c                                                                               
+    1   26
+c Graphite Reflector (Commented)                                                
+    1   27
+c                                                                               
+    1   27
+c Universe Boundary                                                             
+    2    1
+c ================ SURFACE DEFINITIONS ========================                 
+    2    1
+c Layer 1 Surfaces (Z: 0-60 cm)                                                 
+    2   30
+c                                                                               
+    2   30
+c Layer 2 Surfaces (Z: 0-60 cm)                                                 
+    2   65
+c                                                                               
+    2   65
+c Layer 3 Surfaces (Z: 0-60 cm)                                                 
+    2  100
+c                                                                               
+    2  100
+c Layer 4 Surfaces (Z: 0-60 cm)                                                 
+    2  135
+c                                                                               
+    2  135
+c Layer 5 Surfaces (Z: 0-60 cm)                                                 
+    2  170
+c                                                                               
+    2  205
+c                                                                               
+    2  212
+c                                                                               
+    2  212
+c Core Geometry                                                                 
+    2  221
+c                                                                               
+    2  221
+c global Geometry                                                               
+    3   48    1    0
+c ================ MATERIAL DEFINITIONS =======================                 
+    3    5    2    0
+c ================ PHYSICS & SOURCE ===========================                 
